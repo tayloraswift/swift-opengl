@@ -10,7 +10,7 @@
 
 An OpenGL function loader written in pure swift. To use it, `import OpenGL` in your swift file.
 
-*OpenGL* is a function loader which allows you to call OpenGL GPU functions from swift programs. These functions are loaded lazily at runtime by *OpenGL*. *OpenGL* also diagnoses invalid OpenGL function calls due to the function not being available on a particular GPU and OpenGL version.
+*OpenGL* is a function loader which allows you to call OpenGL GPU functions from swift programs. These functions are loaded lazily at runtime by *OpenGL*. *OpenGL* also diagnoses invalid OpenGL function calls due to the function not being available on a particular GPU and OpenGL version. *OpenGL* can load any OpenGL function up to OpenGL 4.5.
 
 *OpenGL* provides access to OpenGL functions both with labeled and unlabeled arguments. This can help you avoid common argument ordering bugs.
 
