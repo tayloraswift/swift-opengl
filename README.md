@@ -1,4 +1,4 @@
-[![Platforms](https://img.shields.io/badge/platform-linux%20|%20osx-lightgrey.svg)](https://swift.org)
+[![Platforms](https://img.shields.io/badge/platform-linux-lightgrey.svg)](https://swift.org)
 [![Release tag](https://img.shields.io/github/release/kelvin13/swift-opengl.svg)](https://github.com/kelvin13/swift-opengl/releases)
 [![Build](https://travis-ci.org/kelvin13/swift-opengl.svg?branch=master)](https://travis-ci.org/kelvin13/swift-opengl)
 [![Issues](https://img.shields.io/github/issues/kelvin13/swift-opengl.svg)](https://github.com/kelvin13/swift-opengl/issues?state=open)
