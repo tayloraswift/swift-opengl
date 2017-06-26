@@ -660,7 +660,8 @@ struct DefinitionParser:XMLParser
                 name += "_" + api
             }
 
-            if name.starts(with: "GL_")
+            if name.starts(with: "GL_") &&
+            !("0" ... "9" ~= name.unicodeScalars[name.unicodeScalars.index(name.unicodeScalars.startIndex, offsetBy: 3)])
             {
                 name.removeFirst(3)
             }
@@ -774,38 +775,38 @@ struct DefinitionParser:XMLParser
             enum GL
             {
                 // note: GL.Int is Swift.Int32, not Swift.Int, and
-                // GL.UInt is Swift.UInt32, not Swift.UInt
-                public typealias Bool               = Swift.Bool
-                public typealias Double             = Swift.Double
-                public typealias ClampDouble        = Swift.Double
-                public typealias Float              = Swift.Float
-                public typealias ClampFloat         = Swift.Float
-                public typealias Byte               = Swift.Int8
-                public typealias Char               = Swift.Int8
-                public typealias CharARB            = Swift.Int8
-                public typealias Short              = Swift.Int16
-                public typealias Int                = Swift.Int32
-                public typealias Size               = Swift.Int32
-                public typealias Enum               = Swift.Int32
-                public typealias Fixed              = Swift.Int32
-                public typealias ClampX             = Swift.Int32
-                public typealias Int64              = Swift.Int64
-                public typealias Int64EXT           = Swift.Int64
-                public typealias IntPointer         = Swift.Int
-                public typealias IntPointerARB      = Swift.Int
-                public typealias SizePointer        = Swift.Int
-                public typealias SizePointerARB     = Swift.Int
-                public typealias VdpauSurfaceNV     = Swift.Int
-                public typealias UByte              = Swift.UInt8
-                public typealias UShort             = Swift.UInt16
-                public typealias HalfNV             = Swift.UInt16
-                public typealias UInt               = Swift.UInt32
-                public typealias Bitfield           = Swift.UInt32
-                public typealias UInt64             = Swift.UInt64
-                public typealias UInt64EXT          = Swift.UInt64
-                public typealias HandleARB          = UnsafeMutableRawPointer?
-                public typealias EGLImageOES        = UnsafeMutableRawPointer?
-                public typealias Sync               = OpaquePointer?
+                //       GL.UInt is Swift.UInt32, not Swift.UInt
+                public typealias Bool           = Swift.Bool
+                public typealias Double         = Swift.Double
+                public typealias ClampDouble    = Swift.Double
+                public typealias Float          = Swift.Float
+                public typealias ClampFloat     = Swift.Float
+                public typealias Byte           = Swift.Int8
+                public typealias Char           = Swift.Int8
+                public typealias CharARB        = Swift.Int8
+                public typealias Short          = Swift.Int16
+                public typealias Int            = Swift.Int32
+                public typealias Size           = Swift.Int32
+                public typealias Enum           = Swift.Int32
+                public typealias Fixed          = Swift.Int32
+                public typealias ClampX         = Swift.Int32
+                public typealias Int64          = Swift.Int64
+                public typealias Int64EXT       = Swift.Int64
+                public typealias IntPointer     = Swift.Int
+                public typealias IntPointerARB  = Swift.Int
+                public typealias SizePointer    = Swift.Int
+                public typealias SizePointerARB = Swift.Int
+                public typealias VdpauSurfaceNV = Swift.Int
+                public typealias UByte          = Swift.UInt8
+                public typealias UShort         = Swift.UInt16
+                public typealias HalfNV         = Swift.UInt16
+                public typealias UInt           = Swift.UInt32
+                public typealias Bitfield       = Swift.UInt32
+                public typealias UInt64         = Swift.UInt64
+                public typealias UInt64EXT      = Swift.UInt64
+                public typealias HandleARB      = UnsafeMutableRawPointer?
+                public typealias EGLImageOES    = UnsafeMutableRawPointer?
+                public typealias Sync           = OpaquePointer?
 
                 public typealias DebugProc = @convention(c)
                     (Swift.Int32, Swift.Int32, Swift.UInt32, Swift.Int32, Swift.Int32, UnsafePointer<Swift.Int8>?, UnsafeRawPointer?) -> ()

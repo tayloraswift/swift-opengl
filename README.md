@@ -37,3 +37,37 @@ glTexParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.CLAMP_TO_EDGE)
 let tex_id1:GL.UInt
 let tex_id2:UInt32
 ```
+
+| OpenGL c type     | *OpenGL* swift typealias | *OpenGL* swift type |
+| ----------------- | ----------------- | ------------------------- |
+| GLboolean         | GL.Bool           | Bool                      |
+| GLdouble          | GL.Double         | Double                    |
+| GLclampd          | GL.ClampDouble    | Double                    |
+| GLfloat           | GL.Float          | Float                     |
+| GLclampf          | GL.ClampFloat     | Float                     |
+| GLbyte            | GL.Byte           | Int8                      |
+| GLchar            | GL.Char           | Int8                      |
+| GLcharARB         | GL.CharARB        | Int8                      |
+| GLshort           | GL.Short          | Int16                     |
+| GLint             | GL.Int            | Int32                     |
+| GLsizei           | GL.Size           | Int32                     |
+| GLenum            | GL.Enum           | Int32                     |
+| GLfixed           | GL.Fixed          | Int32                     |
+| GLclampx          | GL.ClampX         | Int32                     |
+| GLint64           | GL.Int64          | Int64                     |
+| GLint64EXT        | GL.Int64EXT       | Int64                     |
+| GLintptr          | GL.IntPointer     | Int                       |
+| GLintptrARB       | GL.IntPointerARB  | Int                       |
+| GLsizeiptr        | GL.SizePointer    | Int                       |
+| GLsizeiptrARB     | GL.SizePointerARB | Int                       |
+| GLvdpauSurfaceNV  | GL.VdpauSurfaceNV | Int                       |
+| GLubyte           | GL.UByte          | UInt8                     |
+| GLushort          | GL.UShort         | UInt16                    |
+| GLhalfNV          | GL.HalfNV         | UInt16                    |
+| GLuint            | GL.UInt           | UInt32                    |
+| GLbitfield        | GL.Bitfield       | UInt32                    |
+| GLuint64          | GL.UInt64         | UInt64                    |
+| GLuint64EXT       | GL.UInt64EXT      | UInt64                    |
+| GLhandleARB       | GL.HandleARB      | UnsafeMutableRawPointer?  |
+| GLeglImageOES     | GL.EGLImageOES    | UnsafeMutableRawPointer?  |
+| GLsync            | GL.Sync           | OpaquePointer?            |
