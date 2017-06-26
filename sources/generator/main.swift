@@ -298,11 +298,11 @@ struct DefinitionParser:XMLParser
                 return "GLDebugProcKHR"
 
             case .GLhandleARB, .GLeglImageOES, .unsafemutablerawpointer:
-                return "UnsafeMutableRawPointer"
+                return "UnsafeMutableRawPointer?"
             case .GLsync, .struct__cl_context, .struct__cl_event:
-                return "OpaquePointer"
+                return "OpaquePointer?"
             case .unsafemutablepointer_u8:
-                return "UnsafeMutablePointer<UInt8>"
+                return "UnsafeMutablePointer<UInt8>?"
             case .void, .GLvoid:
                 return "()"
 
@@ -396,33 +396,33 @@ struct DefinitionParser:XMLParser
             case .mutable:
                 if self.type != .GLvoid
                 {
-                    return "UnsafeMutablePointer<\(self.type.swift_type)>"
+                    return "UnsafeMutablePointer<\(self.type.swift_type)>?"
                 }
                 fallthrough
 
             case .mutable_raw:
-                return "UnsafeMutableRawPointer"
+                return "UnsafeMutableRawPointer?"
 
             case .immutable, .array_2:
-                return "UnsafePointer<\(self.type.swift_type)>"
+                return "UnsafePointer<\(self.type.swift_type)>?"
 
             case .immutable_raw:
-                return "UnsafeRawPointer"
+                return "UnsafeRawPointer?"
 
             case .mutable_mutable_raw:
-                return "UnsafeMutablePointer<UnsafeMutableRawPointer>"
+                return "UnsafeMutablePointer<UnsafeMutableRawPointer?>?"
 
             case .mutable_immutable:
-                return "UnsafeMutablePointer<UnsafeMutablePointer<\(self.type.swift_type)>>"
+                return "UnsafeMutablePointer<UnsafeMutablePointer<\(self.type.swift_type)>?>?"
 
             case .mutable_immutable_raw:
-                return "UnsafeMutablePointer<UnsafeRawPointer>"
+                return "UnsafeMutablePointer<UnsafeRawPointer?>?"
 
             case .immutable_immutable:
-                return "UnsafePointer<UnsafePointer<\(self.type.swift_type)>>"
+                return "UnsafePointer<UnsafePointer<\(self.type.swift_type)>?>?"
 
             case .immutable_immutable_raw:
-                return "UnsafePointer<UnsafeRawPointer>"
+                return "UnsafePointer<UnsafeRawPointer?>?"
             }
         }
 

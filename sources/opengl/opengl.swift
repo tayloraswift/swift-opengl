@@ -43,17 +43,17 @@ public typealias GLuint             = UInt32
 public typealias GLbitfield         = UInt32
 public typealias GLuint64           = UInt64
 public typealias GLuint64EXT        = UInt64
-public typealias GLhandleARB        = UnsafeMutableRawPointer
-public typealias GLeglImageOES      = UnsafeMutableRawPointer
-public typealias GLsync             = OpaquePointer
+public typealias GLhandleARB        = UnsafeMutableRawPointer?
+public typealias GLeglImageOES      = UnsafeMutableRawPointer?
+public typealias GLsync             = OpaquePointer?
 
 public typealias GLDebugProc = @convention(c)
-    (Int32, Int32, UInt32, Int32, Int32, UnsafePointer<Int8>, UnsafeRawPointer) -> Void
+    (Int32, Int32, UInt32, Int32, Int32, UnsafePointer<Int8>?, UnsafeRawPointer?) -> Void
 public typealias GLDebugProcARB = GLDebugProc
 public typealias GLDebugProcKHR = GLDebugProc
 
 public typealias GLDebugProcAMD = @convention(c)
-    (Int32, Int32, Int32, Int32, UnsafePointer<Int8>, UnsafeMutableRawPointer) -> Void
+    (Int32, Int32, Int32, Int32, UnsafePointer<Int8>?, UnsafeMutableRawPointer?) -> Void
 
 func get_fp(_ name:String, support:[String]) -> UnsafeMutableRawPointer
 {
