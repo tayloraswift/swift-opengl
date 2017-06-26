@@ -12,33 +12,36 @@ An OpenGL function loader written in pure swift. To use it, `import OpenGL` in y
 
 *OpenGL* is a function loader which allows you to call OpenGL GPU functions from swift programs. These functions are loaded lazily at runtime by *OpenGL*. *OpenGL* also diagnoses invalid OpenGL function calls due to the function not being available on a particular GPU and OpenGL version. *OpenGL* can load any OpenGL function up to OpenGL 4.5.
 
-*OpenGL* provides access to OpenGL functions both with labeled and unlabeled arguments. This can help you avoid common argument ordering bugs.
+## Functions
+
+*OpenGL* provides access to OpenGL functions both with labeled and unlabeled arguments. This can help you avoid common argument ordering bugs. 
 
 ```swift
-var tex_id:UInt32 = 0
-glGenTextures(1, &tex_id)
-glBindTexture(GL.TEXTURE_2D, tex_id)
-glTexImage2D(target         : GL.TEXTURE_2D,
-             level          : 0,
-             internalformat : GL.RGBA8,
-             width          : h,
-             height         : k,
-             border         : 0,
-             format         : GL.RGBA,
-             type           : GL.UNSIGNED_BYTE,
-             pixels         : pixbuf)
-glTexParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.CLAMP_TO_EDGE)
-glTexParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.CLAMP_TO_EDGE)
+glClearColor(0.15, 0.15, 0.15, 1)
+glClearColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1)
 ```
 
-*OpenGL* also provides typealias definitions for OpenGL types.
+The function names are the same as the OpenGL C specification, and the argument labels are the same as the parameter names in the C specification, with two exceptions: `` `in`: `` has been renamed to `input:`, and `` `func`: `` has been renamed to `f:` to avoid conflicts with Swift keywords.
+
+## Constants
+
+*OpenGL* imports OpenGL constants under the scope `GL`. Unless doing so would cause the constant’s name to start with a digit, the constant’s redundant `GL_` prefix is dropped.
 
 ```swift
-let tex_id1:GL.UInt
-let tex_id2:UInt32
+glBlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA)
 ```
 
-| OpenGL c type     | *OpenGL* swift typealias | *OpenGL* swift type |
+All *OpenGL* constants are of one of the following types: `GL.Enum`, `GL.Bitfield`, or `GL.UInt64`. (`Int32`, `UInt32`, or `UInt64`, respectively.)
+
+## Types
+
+*OpenGL* provides typealias definitions for OpenGL types. The typealiases are given Swifty names, and are also scoped to `GL`.
+
+```swift
+var tex_id:GL.UInt = 0
+```
+
+| OpenGL C type     | *OpenGL* Swift typealias | *OpenGL* Swift type |
 | ----------------- | ----------------- | ------------------------- |
 | GLboolean         | GL.Bool           | Bool                      |
 | GLdouble          | GL.Double         | Double                    |
