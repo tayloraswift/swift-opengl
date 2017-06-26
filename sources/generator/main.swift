@@ -264,43 +264,83 @@ struct DefinitionParser:XMLParser
             switch self
             {
             case .GLboolean:
-                return "Bool"
-            case .GLdouble, .GLclampd:
-                return "Double"
-            case .GLfloat, .GLclampf:
-                return "Float"
-            case .GLbyte, .GLchar, .GLcharARB:
-                return "Int8"
+                return "GL.Bool"
+            case .GLdouble:
+                return "GL.Double"
+            case .GLclampd:
+                return "GL.ClampDouble"
+            case .GLfloat:
+                return "GL.Float"
+            case .GLclampf:
+                return "GL.ClampFloat"
+            case .GLbyte:
+                return "GL.Byte"
+            case .GLchar:
+                return "GL.Char"
+            case .GLcharARB:
+                return "GL.CharARB"
             case .GLshort:
-                return "Int16"
-            case .GLint, .GLsizei, .GLenum, .GLfixed, .GLclampx:
-                return "Int32"
-            case .GLint64, .GLint64EXT:
-                return "Int64"
-            case .GLintptr, .GLintptrARB, .GLsizeiptr, .GLsizeiptrARB, .GLvdpauSurfaceNV:
-                return "Int"
+                return "GL.Short"
+            case .GLint:
+                return "GL.Int"
+            case .GLsizei:
+                return "GL.Size"
+            case .GLenum:
+                return "GL.Enum"
+            case .GLfixed:
+                return "GL.Fixed"
+            case .GLclampx:
+                return "GL.ClampX"
+            case .GLint64:
+                return "GL.Int64"
+            case .GLint64EXT:
+                return "GL.Int64EXT"
+            case .GLintptr:
+                return "GL.IntPointer"
+            case .GLintptrARB:
+                return "GL.IntPointerARB"
+            case .GLsizeiptr:
+                return "GL.SizePointer"
+            case .GLsizeiptrARB:
+                return "GL.SizePointerARB"
+            case .GLvdpauSurfaceNV:
+                return "GL.VdpauSurfaceNV"
             case .GLubyte:
-                return "UInt8"
-            case .GLushort, .GLhalfNV:
-                return "UInt16"
-            case .GLuint, .GLbitfield:
-                return "UInt32"
-            case .GLuint64, .GLuint64EXT:
-                return "UInt64"
+                return "GL.UByte"
+            case .GLushort:
+                return "GL.UShort"
+            case .GLhalfNV:
+                return "GL.HalfNV"
+            case .GLuint:
+                return "GL.UInt"
+            case .GLbitfield:
+                return "GL.Bitfield"
+            case .GLuint64:
+                return "GL.UInt64"
+            case .GLuint64EXT:
+                return "GL.UInt64EXT"
 
             case .GLDEBUGPROC:
-                return "GLDebugProc"
+                return "GL.DebugProc"
             case .GLDEBUGPROCAMD:
-                return "GLDebugProcAMD"
+                return "GL.DebugProcAMD"
             case .GLDEBUGPROCARB:
-                return "GLDebugProcARB"
+                return "GL.DebugProcARB"
             case .GLDEBUGPROCKHR:
-                return "GLDebugProcKHR"
+                return "GL.DebugProcKHR"
 
-            case .GLhandleARB, .GLeglImageOES, .unsafemutablerawpointer:
-                return "UnsafeMutableRawPointer?"
-            case .GLsync, .struct__cl_context, .struct__cl_event:
+            case .GLhandleARB:
+                return "GL.HandleARB"
+            case .GLeglImageOES:
+                return "GL.EGLImageOES"
+
+            case .GLsync:
+                return "GL.Sync"
+
+            case .struct__cl_context, .struct__cl_event:
                 return "OpaquePointer?"
+            case .unsafemutablerawpointer:
+                return "UnsafeMutableRawPointer?"
             case .unsafemutablepointer_u8:
                 return "UnsafeMutablePointer<UInt8>?"
             case .void, .GLvoid:
@@ -620,6 +660,11 @@ struct DefinitionParser:XMLParser
                 name += "_" + api
             }
 
+            if name.starts(with: "GL_")
+            {
+                name.removeFirst(3)
+            }
+
             let int_type:String
 
             if attributes["type"] == "u"
@@ -723,24 +768,72 @@ struct DefinitionParser:XMLParser
     func generate_constants(stream:UnsafeMutablePointer<FILE>)
     {
         fputs(LICENSE, stream)
-        fputs("\n\n", stream)
+        fputs("""
+
+            public
+            enum GL
+            {
+                // note: GL.Int is Swift.Int32, not Swift.Int, and
+                // GL.UInt is Swift.UInt32, not Swift.UInt
+                public typealias Bool               = Swift.Bool
+                public typealias Double             = Swift.Double
+                public typealias ClampDouble        = Swift.Double
+                public typealias Float              = Swift.Float
+                public typealias ClampFloat         = Swift.Float
+                public typealias Byte               = Swift.Int8
+                public typealias Char               = Swift.Int8
+                public typealias CharARB            = Swift.Int8
+                public typealias Short              = Swift.Int16
+                public typealias Int                = Swift.Int32
+                public typealias Size               = Swift.Int32
+                public typealias Enum               = Swift.Int32
+                public typealias Fixed              = Swift.Int32
+                public typealias ClampX             = Swift.Int32
+                public typealias Int64              = Swift.Int64
+                public typealias Int64EXT           = Swift.Int64
+                public typealias IntPointer         = Swift.Int
+                public typealias IntPointerARB      = Swift.Int
+                public typealias SizePointer        = Swift.Int
+                public typealias SizePointerARB     = Swift.Int
+                public typealias VdpauSurfaceNV     = Swift.Int
+                public typealias UByte              = Swift.UInt8
+                public typealias UShort             = Swift.UInt16
+                public typealias HalfNV             = Swift.UInt16
+                public typealias UInt               = Swift.UInt32
+                public typealias Bitfield           = Swift.UInt32
+                public typealias UInt64             = Swift.UInt64
+                public typealias UInt64EXT          = Swift.UInt64
+                public typealias HandleARB          = UnsafeMutableRawPointer?
+                public typealias EGLImageOES        = UnsafeMutableRawPointer?
+                public typealias Sync               = OpaquePointer?
+
+                public typealias DebugProc = @convention(c)
+                    (Swift.Int32, Swift.Int32, Swift.UInt32, Swift.Int32, Swift.Int32, UnsafePointer<Swift.Int8>?, UnsafeRawPointer?) -> ()
+                public typealias DebugProcARB = DebugProc
+                public typealias DebugProcKHR = DebugProc
+
+                public typealias DebugProcAMD = @convention(c)
+                    (Swift.Int32, Swift.Int32, Swift.Int32, Swift.Int32, UnsafePointer<Swift.Int8>?, UnsafeMutableRawPointer?) -> ()
+
+
+            """, stream)
 
         var first:Bool = true
         for (name, int_type, value):(String, String, String) in self.constants
         {
             if first
             {
-                fputs("public \nlet ", stream)
+                fputs("    public static \n    let ", stream)
                 first = false
             }
             else
             {
-                fputs(", \n    ", stream)
+                fputs(", \n        ", stream)
             }
 
-            fputs("\(name):\(int_type) = \(value)", stream)
+            fputs("\(name):Swift.\(int_type) = \(value)", stream)
         }
-        fputs("\n", stream)
+        fputs("\n}\n", stream)
     }
 
     func generate_loader(stream:UnsafeMutablePointer<FILE>)

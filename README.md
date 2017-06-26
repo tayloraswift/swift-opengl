@@ -17,23 +17,23 @@ An OpenGL function loader written in pure swift. To use it, `import OpenGL` in y
 ```swift
 var tex_id:UInt32 = 0
 glGenTextures(1, &tex_id)
-glBindTexture(GL_TEXTURE_2D, tex_id)
-glTexImage2D(target         : GL_TEXTURE_2D,
+glBindTexture(GL.TEXTURE_2D, tex_id)
+glTexImage2D(target         : GL.TEXTURE_2D,
              level          : 0,
-             internalformat : GL_RGBA8,
+             internalformat : GL.RGBA8,
              width          : h,
              height         : k,
              border         : 0,
-             format         : GL_RGBA,
-             type           : GL_UNSIGNED_BYTE,
+             format         : GL.RGBA,
+             type           : GL.UNSIGNED_BYTE,
              pixels         : pixbuf)
-glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE)
-glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE)
+glTexParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.CLAMP_TO_EDGE)
+glTexParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.CLAMP_TO_EDGE)
 ```
 
 *OpenGL* also provides typealias definitions for OpenGL types.
 
 ```swift
-let tex_id1:GLuint
+let tex_id1:GL.UInt
 let tex_id2:UInt32
 ```

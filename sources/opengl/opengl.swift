@@ -15,6 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/*
 public typealias GLboolean          = Bool
 public typealias GLdouble           = Double
 public typealias GLclampd           = Double
@@ -54,6 +55,7 @@ public typealias GLDebugProcKHR = GLDebugProc
 
 public typealias GLDebugProcAMD = @convention(c)
     (Int32, Int32, Int32, Int32, UnsafePointer<Int8>?, UnsafeMutableRawPointer?) -> Void
+*/
 
 func get_fp(_ name:String, support:[String]) -> UnsafeMutableRawPointer
 {
