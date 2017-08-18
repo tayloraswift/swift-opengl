@@ -8,13 +8,13 @@
 
 # opengl
 
-An OpenGL function loader written in pure swift. To use it, `import OpenGL` in your swift file.
+An OpenGL function loader written in pure swift. To use it, `import GL` in your swift file.
 
 *OpenGL* is a function loader which allows you to call OpenGL GPU functions from swift programs. These functions are loaded lazily at runtime by *OpenGL*. *OpenGL* also diagnoses invalid OpenGL function calls due to the function not being available on a particular GPU and OpenGL version. *OpenGL* can load any OpenGL function up to OpenGL 4.5.
 
 ## Functions
 
-*OpenGL* provides access to OpenGL functions both with labeled and unlabeled arguments. This can help you avoid common argument ordering bugs. 
+*OpenGL* provides access to OpenGL functions both with labeled and unlabeled arguments. This can help you avoid common argument ordering bugs.
 
 ```swift
 glClearColor(0.15, 0.15, 0.15, 1)
@@ -30,6 +30,8 @@ The function names are the same as the OpenGL C specification, and the argument 
 ```swift
 glBlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA)
 ```
+
+> Note: The `GL` scope is not the same as the module scope which is also called `GL`. The fully qualified name of an OpenGL enum or an OpenGL type is `GL.GL.__symbolname__`. The fully qualified name of an OpenGL function is just `GL.__functionname__`.
 
 All *OpenGL* constants are of one of the following types: `GL.Enum`, `GL.Bitfield`, or `GL.UInt64`. (`Int32`, `UInt32`, or `UInt64`, respectively.)
 
