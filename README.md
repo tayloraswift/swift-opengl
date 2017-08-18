@@ -4,13 +4,15 @@
 [![Issues](https://img.shields.io/github/issues/kelvin13/swift-opengl.svg)](https://github.com/kelvin13/swift-opengl/issues?state=open)
 [![Language](https://img.shields.io/badge/version-swift_4-ffa020.svg)](https://swift.org)
 [![License](https://img.shields.io/badge/license-GPL3-ff3079.svg)](https://github.com/kelvin13/swift-opengl/blob/master/COPYING)
-[![Queen](https://img.shields.io/badge/taylor-swift-e030ff.svg)](https://www.google.com/search?q=where+is+ts6&oq=where+is+ts6)
+[![KK25](https://img.shields.io/badge/karlie-kloss-e030ff.svg)](https://www.google.com/search?q=karlie+kloss)
 
-# opengl
+# OpenGL
 
 An OpenGL function loader written in pure swift. To use it, `import GL` in your swift file.
 
 *OpenGL* is a function loader which allows you to call OpenGL GPU functions from swift programs. These functions are loaded lazily at runtime by *OpenGL*. *OpenGL* also diagnoses invalid OpenGL function calls due to the function not being available on a particular GPU and OpenGL version. *OpenGL* can load any OpenGL function up to OpenGL 4.5.
+
+*OpenGL* works on Linux; it’s untested on Mac OSX, but there is no reason it shouldn’t work.
 
 ## Functions
 
